@@ -17,19 +17,18 @@ app.config['MYSQL_DB'] = 'RMS'
 class BillForm(Form):
     order_id = StringField('order_id', [validators.InputRequired()])
     total_amount = StringField('total_amount', [validators.InputRequired()])
-    payment_status = StringField('payment_status', default=datetime.utcnow)
+    payment_status = StringField('payment_status', [validators.InputRequired()])
 mysql = MySQL(app)
 
 @app.route('/add_bill', methods=['POST'])
 def add_bill():
     form = BillForm(request.form)
     if form.validate():
-        name = form.name.data
-        role = form.role.data
-        created_at = form.created_at.data
-        updated_at = form.updated_at.data
+        order_id = form.order_id.data
+        total_amount = form.total_amount.data
+        payment_status = form.payment_status.data
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO bill(name, role, created_at, updated_at) VALUES(%s, %s, %s, %s)", (name, role, created_at, updated_at))
+        cur.execute("INSERT INTO bill(order_id, total_amount, payment_status) VALUES(%s, %s, %s)", (order_id, total_amount, payment_status))
         mysql.connection.commit()
         cur.close()
         response = {'code': '200', 'status': 'true', 'message': 'bill added successfully'}
@@ -79,9 +78,9 @@ def delete_bill(id):
 def update_bill(bill_id):
     form = BillForm(request.form)
     if form.validate():
-        name = form.name.data
-        role = form.role.data
-        updated_at = form.updated_at.data
+        order_id = form.order_id.data
+        total_amount = form.total_amount.data
+        payment_status = form.payment_status.data
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM bill WHERE id=%s", (bill_id,))
         bill = cur.fetchone()
@@ -90,7 +89,7 @@ def update_bill(bill_id):
             final_response = {'code': '404', 'status': 'false', 'message': 'bill not found'}
             return jsonify(final_response)
         else:
-            cur.execute("UPDATE c_bill SET name=%s, role=%s, updated_at=%s WHERE id=%s", (name, role, updated_at, bill_id))
+            cur.execute("UPDATE c_bill SET order_id=%s, total_amount=%s, payment_system=%s WHERE id=%s", (order_id, total_amount, payment_status, bill_id))
             mysql.connection.commit()
             cur.close()
             response = {'code': '200', 'status': 'true', 'message': 'bill updated successfully'}

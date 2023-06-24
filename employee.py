@@ -15,7 +15,7 @@ app.config['MYSQL_DB'] = 'RMS'
 
 
 class EmployeeForm(Form):
-    id = StringField('id', [validators.InputRequired()])
+    user_id = StringField('user_id', [validators.InputRequired()])
     category = StringField('category', [validators.InputRequired()])
     salary = StringField('salary', [validators.InputRequired()])
     
@@ -25,11 +25,11 @@ mysql = MySQL(app)
 def add_employee():
     form = EmployeeForm(request.form)
     if form.validate():
-        id = form.id.data
+        user_id = form.user_id.data
         category = form.category.data
         salary = form.salary.data
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO employee(id, category, salary) VALUES(%s, %s, %s)", (id, category, salary))
+        cur.execute("INSERT INTO employee(user_id, category, salary) VALUES(%s, %s, %s)", (user_id, category, salary))
         mysql.connection.commit()
         cur.close()
         response = {'code': '200', 'status': 'true', 'message': 'employee added successfully'}
@@ -39,10 +39,10 @@ def add_employee():
         return jsonify(response)
 
     
-@app.route('/employee/<int:employee_id>', methods=['GET'])
-def get_employee(employee_id):
+@app.route('/employee/<int:employee_user_id>', methods=['GET'])
+def get_employee(employee_user_id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM employee WHERE id=%s", (employee_id,))
+    cur.execute("SELECT * FROM employee WHERE user_id=%s", (employee_user_id,))
     employee = cur.fetchone()
     cur.close()
     if employee:
@@ -61,10 +61,10 @@ def get_all_employees():
     response = {'code': '200', 'status': 'true', 'data': employees}
     return jsonify(response)
 
-@app.route('/del_employee/<int:id>', methods=['DELETE'])
-def delete_employee(id):
+@app.route('/del_employee/<int:user_id>', methods=['DELETE'])
+def delete_employee(user_id):
     cur = mysql.connection.cursor()
-    employee = cur.execute(f"DELETE FROM employee WHERE id={id}")
+    employee = cur.execute(f"DELETE FROM employee WHERE user_id={user_id}")
     mysql.connection.commit()
     cur.close()
     if employee > 0:
@@ -75,22 +75,22 @@ def delete_employee(id):
         return jsonify(final_response)
 
 
-@app.route('/upd_employee/<int:employee_id>', methods=['PUT'])
-def update_employee(employee_id):
+@app.route('/upd_employee/<int:employee_user_id>', methods=['PUT'])
+def update_employee(employee_user_id):
     form = EmployeeForm(request.form)
     if form.validate():
-        id = form.id.data
+        user_id = form.user_id.data
         category = form.category.data
         salary = form.salary.data
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM employee WHERE id=%s", (employee_id,))
+        cur.execute("SELECT * FROM employee WHERE user_id=%s", (employee_user_id,))
         employee = cur.fetchone()
         if not employee:
             cur.close()
             final_response = {'code': '404', 'status': 'false', 'message': 'employee not found'}
             return jsonify(final_response)
         else:
-            cur.execute("UPDATE c_employee SET name=%s, role=%s, updated_at=%s WHERE id=%s", (id, category, salary, employee_id))
+            cur.execute("UPDATE c_employee SET name=%s, role=%s, updated_at=%s WHERE user_id=%s", (user_id, category, salary, employee_user_id))
             mysql.connection.commit()
             cur.close()
             response = {'code': '200', 'status': 'true', 'message': 'employee updated successfully'}
