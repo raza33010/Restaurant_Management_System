@@ -15,9 +15,11 @@ app.config['MYSQL_DB'] = 'RMS'
 
 
 class CustomerForm(Form):
-    user_id = StringField('Name', [validators.InputRequired()])
-    phone = StringField('Role', [validators.InputRequired()])
+    user_id = IntegerField('Name', [validators.InputRequired()])
+    phone = IntegerField('Role', [validators.InputRequired()])
     address = StringField('address', [validators.InputRequired()])
+    created_at = DateTimeField('Created At', default=datetime.utcnow)
+    updated_at = DateTimeField('Updated At', default=datetime.utcnow)
 
 mysql = MySQL(app)
 
@@ -28,8 +30,10 @@ def add_customer():
         user_id = form.user_id.data
         phone = form.phone.data
         address = form.address.data
+        created_at = form.created_at.data
+        updated_at = form.updated_at.data
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO customer(user_id, phone, address) VALUES(%s, %s, %s)", (user_id, phone, address ))
+        cur.execute("INSERT INTO customer(user_id, phone, address, created_at, updated_at) VALUES(%s, %s, %s, %s, %s)", (user_id, phone, address, created_at, updated_at))
         mysql.connection.commit()
         cur.close()
         response = {'code': '200', 'status': 'true', 'message': 'customer added successfully'}
@@ -40,9 +44,9 @@ def add_customer():
 
     
 @app.route('/customer/<int:customer_user_id>', methods=['GET'])
-def get_customer(customer_user_id):
+def get_customer(customer_id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM customer WHERE user_id=%s", (customer_user_id,))
+    cur.execute("SELECT * FROM customer WHERE user_id=%s", (customer_id,))
     customer = cur.fetchone()
     cur.close()
     if customer:
@@ -76,21 +80,22 @@ def delete_customer(user_id):
 
 
 @app.route('/upd_customer/<int:customer_user_id>', methods=['PUT'])
-def update_customer(customer_user_id):
+def update_customer(customer_id):
     form = CustomerForm(request.form)
     if form.validate():
         user_id = form.user_id.data
         phone = form.phone.data
         address = form.address.data
+        updated_at = form.updated_at.data
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM customer WHERE user_id=%s", (customer_user_id,))
+        cur.execute("SELECT * FROM customer WHERE user_id=%s", (customer_id,))
         customer = cur.fetchone()
         if not customer:
             cur.close()
             final_response = {'code': '404', 'status': 'false', 'message': 'customer not found'}
             return jsonify(final_response)
         else:
-            cur.execute("UPDATE c_customer SET name=%s, role=%s, updated_at=%s WHERE user_id=%s", (user_id, phone, address, customer_user_id))
+            cur.execute("UPDATE c_customer SET  user_id=%s, phone=%s, address=%s, updated_at=%s WHERE id=%s", (user_id, phone, address, updated_at, customer_id))
             mysql.connection.commit()
             cur.close()
             response = {'code': '200', 'status': 'true', 'message': 'customer updated successfully'}

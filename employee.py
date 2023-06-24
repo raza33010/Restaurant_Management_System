@@ -15,9 +15,11 @@ app.config['MYSQL_DB'] = 'RMS'
 
 
 class EmployeeForm(Form):
-    user_id = StringField('user_id', [validators.InputRequired()])
+    user_id = IntegerField('user_id', [validators.InputRequired()])
     category = StringField('category', [validators.InputRequired()])
-    salary = StringField('salary', [validators.InputRequired()])
+    salary = IntegerField('salary', [validators.InputRequired()])
+    created_at = DateTimeField('Created At', default=datetime.utcnow)
+    updated_at = DateTimeField('Updated At', default=datetime.utcnow)
     
 mysql = MySQL(app)
 
@@ -28,8 +30,10 @@ def add_employee():
         user_id = form.user_id.data
         category = form.category.data
         salary = form.salary.data
+        created_at = form.created_at.data
+        updated_at = form.updated_at.data
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO employee(user_id, category, salary) VALUES(%s, %s, %s)", (user_id, category, salary))
+        cur.execute("INSERT INTO employee(user_id, category, salary, created_at, updated_at) VALUES(%s, %s, %s, %s, %s)", (user_id, category, salary, created_at, updated_at))
         mysql.connection.commit()
         cur.close()
         response = {'code': '200', 'status': 'true', 'message': 'employee added successfully'}
@@ -40,9 +44,9 @@ def add_employee():
 
     
 @app.route('/employee/<int:employee_user_id>', methods=['GET'])
-def get_employee(employee_user_id):
+def get_employee(employee_id):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM employee WHERE user_id=%s", (employee_user_id,))
+    cur.execute("SELECT * FROM employee WHERE user_id=%s", (employee_id,))
     employee = cur.fetchone()
     cur.close()
     if employee:
@@ -76,21 +80,22 @@ def delete_employee(user_id):
 
 
 @app.route('/upd_employee/<int:employee_user_id>', methods=['PUT'])
-def update_employee(employee_user_id):
+def update_employee(employee_id):
     form = EmployeeForm(request.form)
     if form.validate():
         user_id = form.user_id.data
         category = form.category.data
         salary = form.salary.data
+        updated_at = form.updated_at.data
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM employee WHERE user_id=%s", (employee_user_id,))
+        cur.execute("SELECT * FROM employee WHERE user_id=%s", (employee_id,))
         employee = cur.fetchone()
         if not employee:
             cur.close()
             final_response = {'code': '404', 'status': 'false', 'message': 'employee not found'}
             return jsonify(final_response)
         else:
-            cur.execute("UPDATE c_employee SET name=%s, role=%s, updated_at=%s WHERE user_id=%s", (user_id, category, salary, employee_user_id))
+            cur.execute("UPDATE c_employee SET name=%s, role=%s, updated_at=%s, updated_at=%s WHERE user_id=%s", (user_id, category, salary, updated_at, employee_id))
             mysql.connection.commit()
             cur.close()
             response = {'code': '200', 'status': 'true', 'message': 'employee updated successfully'}
