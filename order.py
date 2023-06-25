@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, flash, jsonify
 from flask_mysqldb import MySQL
-from wtforms import Form, StringField, IntegerField, validators, DateTimeField
+from wtforms import Form, StringField, IntegerField, validators, DateTimeField , DateField
 from datetime import datetime , date 
 # from flask_wtf.file import FileField, FileAllowed, FileRequired
 
@@ -15,15 +15,17 @@ app.config['MYSQL_DB'] = 'RMS'
 
 
 class OrderForm(Form):
-    employee_id = StringField('employee_id', [validators.InputRequired()])
-    cust_id = StringField('cust_id', [validators.InputRequired()])
-    order_date = StringField('order_date', default=date.utcnow)
+    employee_id = IntegerField('employee_id', [validators.InputRequired()])
+    cust_id = IntegerField('cust_id', [validators.InputRequired()])
+    order_date = DateField('order_date', default=date.utcnow)
     order_item = StringField('order_item', [validators.InputRequired()])
-    quantity = StringField('quantity', [validators.InputRequired()])
-    price = StringField('price', [validators.InputRequired()])
+    quantity = IntegerField('quantity', [validators.InputRequired()])
+    price = IntegerField('price', [validators.InputRequired()])
     description = StringField('description', [validators.InputRequired()])
     order_status = StringField('status', [validators.InputRequired()])
-   
+    created_at = DateTimeField('Created At', default=datetime.utcnow)
+    updated_at = DateTimeField('Updated At', default=datetime.utcnow)
+
 
 mysql = MySQL(app)
 
@@ -39,9 +41,11 @@ def add_order():
         price = form.price.data
         description = form.description.data
         order_status = form.order_status.data
+        created_at = form.created_at.data
+        updated_at = form.updated_at.data
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO order(employee_id, cust_id, order_date, order_item, quantity, price ,description, order_status) VALUES(%s, %s, %s,  %s,  %s,  %s,  %s,  %s)",
-                     (employee_id, cust_id, order_date, order_item, quantity, price, description, order_status))
+        cur.execute("INSERT INTO order(employee_id, cust_id, order_date, order_item, quantity, price ,description, order_status, created_at, updated_at) VALUES(%s, %s, %s,  %s,  %s,  %s,  %s,  %s, %s,  %s)",
+                     (employee_id, cust_id, order_date, order_item, quantity, price, description, order_status, created_at, updated_at))
         mysql.connection.commit()
         cur.close()
         response = {'code': '200', 'status': 'true', 'message': 'order added successfully'}
@@ -99,7 +103,7 @@ def update_order(order_id):
         price = form.price.data
         description = form.description.data
         order_status = form.order_status.data
-
+        updated_at = form.updated_at.data
 
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM order WHERE id=%s", (order_id,))
@@ -109,8 +113,8 @@ def update_order(order_id):
             final_response = {'code': '404', 'status': 'false', 'message': 'order not found'}
             return jsonify(final_response)
         else:
-            cur.execute("UPDATE c_order SET employee_id=%s, cust_id=%s, order_date=%s, order_item=%s, quantity=%s, price=%s, description=%s, order_status=%s,  WHERE id=%s", 
-                        (employee_id, cust_id, order_date, order_item, quantity, price, description, order_status))
+            cur.execute("UPDATE c_order SET employee_id=%s, cust_id=%s, order_date=%s, order_item=%s, quantity=%s, price=%s, description=%s, order_status=%s, updated_at=%s WHERE id=%s", 
+                        (employee_id, cust_id, order_date, order_item, quantity, price, description, order_status, updated_at, order_id))
             mysql.connection.commit()
             cur.close()
             response = {'code': '200', 'status': 'true', 'message': 'order updated successfully'}

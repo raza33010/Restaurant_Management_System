@@ -16,8 +16,11 @@ app.config['MYSQL_DB'] = 'RMS'
 
 class MenuForm(Form):
     item_name = StringField('item_name', [validators.InputRequired()])
-    price = StringField('price', [validators.InputRequired()])
+    price = IntegerField('price', [validators.InputRequired()])
     description = StringField('description', [validators.InputRequired()])
+    created_at = DateTimeField('Created At', default=datetime.utcnow)
+    updated_at = DateTimeField('Updated At', default=datetime.utcnow)
+
 mysql = MySQL(app)
 
 @app.route('/add_menu', methods=['POST'])
@@ -27,8 +30,10 @@ def add_menu():
         item_name = form.item_name.data
         price = form.price.data
         description = form.payment_status.data
+        created_at = form.created_at.data
+        updated_at = form.updated_at.data
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO menu(item_name, price, description) VALUES(%s, %s, %s)", (item_name, price, description))
+        cur.execute("INSERT INTO menu(item_name, price, description, created_at, updated_at) VALUES(%s, %s, %s, %s, %s)", (item_name, price, description, created_at, updated_at))
         mysql.connection.commit()
         cur.close()
         response = {'code': '200', 'status': 'true', 'message': 'menu added successfully'}
@@ -81,6 +86,7 @@ def update_menu(menu_id):
         item_name = form.item_name.data
         price = form.price.data
         description = form.description.data
+        updated_at = form.updated_at.data
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM menu WHERE id=%s", (menu_id,))
         menu = cur.fetchone()
@@ -89,7 +95,7 @@ def update_menu(menu_id):
             final_response = {'code': '404', 'status': 'false', 'message': 'menu not found'}
             return jsonify(final_response)
         else:
-            cur.execute("UPDATE c_menu SET item_name=%s, price=%s, description=%s WHERE id=%s", (item_name, price, description, menu_id))
+            cur.execute("UPDATE c_menu SET item_name=%s, price=%s, description=%s, updated_at=%s WHERE id=%s", (item_name, price, description, updated_at, menu_id))
             mysql.connection.commit()
             cur.close()
             response = {'code': '200', 'status': 'true', 'message': 'menu updated successfully'}

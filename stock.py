@@ -16,7 +16,9 @@ app.config['MYSQL_DB'] = 'RMS'
 
 class StockForm(Form):
     menu_item = StringField('menu_item', [validators.InputRequired()])
-    quantity = StringField('quantity', [validators.InputRequired()])
+    quantity = IntegerField('quantity', [validators.InputRequired()])
+    created_at = DateTimeField('Created At', default=datetime.utcnow)
+    updated_at = DateTimeField('Updated At', default=datetime.utcnow)
 
 mysql = MySQL(app)
 
@@ -26,9 +28,11 @@ def add_stock():
     if form.validate():
         menu_item = form.menu_item.data
         quantity = form.quantity.data
+        created_at = form.created_at.data
+        updated_at = form.updated_at.data
         
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO stock(menu_item, quantity) VALUES(%s, %s, %s)", (menu_item, quantity))
+        cur.execute("INSERT INTO stock(menu_item, quantity, created_at, updated_at) VALUES(%s, %s, %s, %s, %s)", (menu_item, quantity, created_at, updated_at))
         mysql.connection.commit()
         cur.close()
         response = {'code': '200', 'status': 'true', 'message': 'stock added successfully'}
@@ -80,6 +84,7 @@ def update_stock(stock_id):
     if form.validate():
         menu_item = form.menu_item.data
         quantity = form.quantity.data
+        updated_at = form.updated_at.data
         
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM stock WHERE id=%s", (stock_id,))
@@ -89,7 +94,7 @@ def update_stock(stock_id):
             final_response = {'code': '404', 'status': 'false', 'message': 'stock not found'}
             return jsonify(final_response)
         else:
-            cur.execute("UPDATE c_stock SET menu_item=%s, quantity=%s WHERE id=%s", (item_name, menu_item, stock_id))
+            cur.execute("UPDATE c_stock SET menu_item=%s, quantity=%s, updated_at=%s WHERE id=%s", (menu_item, quantity, updated_at, stock_id))
             mysql.connection.commit()
             cur.close()
             response = {'code': '200', 'status': 'true', 'message': 'stock updated successfully'}
