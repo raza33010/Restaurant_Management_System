@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Restaurant Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1491960693564-421771d727d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJ1cmdlciUyMHBpfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #444;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        #menu-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Burger Restaurant Management System</h1>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showMenu()">Menu</a>
+        <a href="#">Home</a>
+    </nav>
+
+    <section id="home-section">
+        <h2>Restaurant Timings</h2>
+        <p>Monday - Friday: 10:00 AM to 10:00 PM</p>
+        <p>Saturday - Sunday: 11:00 AM to 11:00 PM</p>
+    </section>
+
+    <section id="menu-section">
+        <h2>Menu</h2>
+        <table>
+            <!-- Your menu items table here -->
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Burger Restaurant Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showMenu() {
+            const homeSection = document.getElementById('home-section');
+            const menuSection = document.getElementById('menu-section');
+            homeSection.style.display = 'none';
+            menuSection.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

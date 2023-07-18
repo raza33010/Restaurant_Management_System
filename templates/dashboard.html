@@ -1,93 +1,1614 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>W3.CSS Template</title>
+<title>Resturant Management System</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
-body,h1,h5 {font-family: "Raleway", sans-serif}
-body, html {height: 100%}
+    body, h1, h5 {
+        font-family: "Raleway", sans-serif;
+    }
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 .img {
-  background-image: url('data:image/jpeg;base64,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');
+  background-image: url('https://images.unsplash.com/photo-1491960693564-421771d727d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJ1cmdlciUyMHBpfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');
   min-height: 100%;
   background-position: center;
   background-size: cover;
 }
+    input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    divi {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
 </style>
 </head>
 <body>
 
 <div class="img w3-display-container w3-text-white">
-  <div class="w3-display-middle w3-jumbo">
-    <p>logo</p>
-  </div>
   <div class="w3-display-topleft w3-container w3-xlarge">
-    <p><button onclick="document.getElementById('menu').style.display='block'" class="w3-button w3-black">menu</button></p>
-    <p><button onclick="document.getElementById('contact').style.display='block'" class="w3-button w3-black">contact</button></p>
+    <p><button onclick="document.getElementById('menu').style.display='block'; getMenuData();" class="w3-button w3-black">menu</button></p>
+    <p><button onclick="document.getElementById('user').style.display='block'; getUserData();" class="w3-button w3-black">User</button></p>
+    <p><button onclick="document.getElementById('customer').style.display='block'; getCustomerData();" class="w3-button w3-black">Customer</button></p>
+    <p><button onclick="document.getElementById('employee').style.display='block'; getEmployeeData();" class="w3-button w3-black">Employee</button></p>
+    <p><button onclick="document.getElementById('bill').style.display='block'; getBillData();" class="w3-button w3-black">Bill</button></p>
+    <p><button onclick="document.getElementById('order').style.display='block'; getOrderData();" class="w3-button w3-black">Order</button></p>
+    <p><button onclick="document.getElementById('stock').style.display='block'; getStockData();" class="w3-button w3-black">Stock</button></p>
   </div>
   <div class="w3-display-bottomleft w3-container">
     <p class="w3-xlarge">monday - friday 10-23 | saturday 14-02</p>
     <p class="w3-large">42 village St, New York</p>
-    <p>powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    <p><a href="https://www.w3schools.com/w3css/default.asp" target="_blank"></a></p>
   </div>
 </div>
+
+
 
 <!-- Menu Modal -->
 <div id="menu" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+        <div class="w3-container w3-black w3-display-container">
+            <span onclick="document.getElementById('menu').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+            <h1>Main Courses <button onclick="document.getElementById('add_item').style.display='block'; document.getElementById('menu').style.display='none';" class="w3-button w3-black">Add</button></h1>
+        </div>
+        <div class="w3-container" id="menu-data">
+            <!-- Data from API will be displayed here in a table -->
+            <table class="w3-table-all">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <b><th>Price</th></b>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="menu-table-body">
+                </tbody>
+            </table>
+        </div>
+        <div class="w3-container w3-black">
+        </div>
+    </div>
+</div>
+
+<!-- Add Menu Item Modal -->
+<div id="add_item" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+        <span onclick="document.getElementById('add_item').style.display='none'; document.getElementById('menu').style.display='block';" class="w3-button w3-display-topright w3-large">x</span>
+        <!-- ... Existing content ... -->
+        <h1>Add Item</h1>
+      </div>
+      <div class="w3-container" id="menu-data">
+          <form action="/add_menu" method="POST">
+              <label for="Description">Description</label>
+              <input type="text" id="description" name="description">
+
+              <label for="Item_name">Item name</label>
+              <input type="text" id="item_name" name="item_name">
+
+              <label for="Price">Price</label>
+              <input type="text" id="price" name="price">
+
+              <input type="hidden" id="edit_menu_id" name="edit_menu_id" value=""> <!-- Hidden field to store the menu item ID -->
+              <input type="submit" value="Submit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Edit menu Item Modal -->
+<div id="edit_item" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('edit_item').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Edit Item</h1>
+      </div>
+      <div class="w3-container" id="menu-data">
+          <form onsubmit="event.preventDefault(); updateMenuItem();">
+              <label for="edit_description">Description</label>
+              <input type="text" id="edit_description" name="edit_description">
+
+              <label for="edit_item_name">Item name</label>
+              <input type="text" id="edit_item_name" name="edit_item_name">
+
+              <label for="edit_price">Price</label>
+              <input type="text" id="edit_price" name="edit_price">
+
+              <input type="hidden" id="edit_menu_id" name="edit_menu_id" value=""> <!-- Hidden field to store the menu item ID -->
+              <input type="submit" value="Edit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- User Modal -->
+<div id="user" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('user').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Users <button onclick="document.getElementById('add_user').style.display='block'; document.getElementById('user').style.display='none';" class="w3-button w3-black">Add</button></h1>
+      </div>
+      <div class="w3-container" id="user-data">
+          <!-- Data from API will be displayed here in a table -->
+          <table class="w3-table-all">
+              <thead>
+                  <tr>
+                      <th>User Id</th>
+                      <th>Name</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="user-table-body">
+              </tbody>
+          </table>
+      </div>
+      <div class="w3-coidner w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Add User Modal -->
+<div id="add_user" class="w3-modal">
   <div class="w3-modal-content w3-animate-zoom">
     <div class="w3-container w3-black w3-display-container">
-      <span onclick="document.getElementById('menu').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
-      <h1>Starters</h1>
+      <span onclick="document.getElementById('user').style.display='block'; document.getElementById('add_user').style.display='none';" class="w3-button w3-display-topright w3-large">x</span>
+      <h1>Add User</h1>  
+      <!-- ... Existing content ... -->
     </div>
-    <div class="w3-container">
-      <h5>Tomato Soup <b>$2.50</b></h5>
-      <h5>Chicken Salad <b>$3.50</b></h5>
-      <h5>Bread and Butter <b>$1.00</b></h5>
-    </div>
-    <div class="w3-container w3-black">
-      <h1>Main Courses</h1>
-    </div>
-    <div class="w3-container">
-      <h5>Grilled Fish and Potatoes <b>$8.50</b></h5>
-      <h5>Italian Pizza <b>$5.50</b></h5>
-      <h5>Veggie Pasta <b>$4.00</b></h5>
-      <h5>Chicken and Potatoes <b>$6.50</b></h5>
-      <h5>Deluxe Burger <b>$5.00</b></h5>
+    <div class="w3-container" id="user-data">
+        <form action="/add_user" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="Role">Role</label>
+            <input type="text" id="role" name="role">
+
+            <input type="hidden" id="edit_user_id" name="edit_user_id" value=""> <!-- Hidden field to store the user item ID -->
+            <input type="submit" value="Submit">
+        </form>
     </div>
     <div class="w3-container w3-black">
-      <h1>Desserts</h1>
-    </div>
-    <div class="w3-container">
-      <h5>Fruit Salad <b>$2.50</b></h5>
-      <h5>Ice cream <b>$2.00</b></h5>
-      <h5>Chocolate Cake <b>$4.00</b></h5>
-      <h5>Cheese <b>$5.50</b></h5>
     </div>
   </div>
 </div>
 
-<!-- Contact Modal -->
-<div id="contact" class="w3-modal">
+<!-- Edit User Modal -->
+<div id="edit_user" class="w3-modal">
   <div class="w3-modal-content w3-animate-zoom">
-    <div class="w3-container w3-black">
-      <span onclick="document.getElementById('contact').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
-      <h1>Contact</h1>
-    </div>
-    <div class="w3-container">
-      <p>Reserve a table, ask for today's special or just send us a message:</p>
-      <form action="/action_page.php" target="_blank">
-        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
-        <p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="How many people" required name="People"></p>
-        <p><input class="w3-input w3-padding-16 w3-border" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
-        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
-        <p><button class="w3-button" type="submit">SEND MESSAGE</button></p>
-      </form>
-    </div>
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('edit_item').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Edit User</h1>
+      </div>
+      <div class="w3-container" id="user-data">
+          <form onsubmit="event.preventDefault(); updateUserItem();">
+              <label for="edit_name">Name</label>
+              <input type="text" id="edit_name" name="edit_name">
+
+              <label for="edit_role">Role</label>
+              <input type="text" id="edit_role" name="edit_role">
+
+              <input type="hidden" id="edit_user_id" name="edit_user_id" value=""> <!-- Hidden field to store the user item ID -->
+              <input type="submit" value="Edit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
   </div>
 </div>
 
+
+<!-- Customer Modal -->
+<div id="customer" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('customer').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Customers List <button onclick="document.getElementById('add_customer').style.display='block'; document.getElementById('customer').style.display='none';" class="w3-button w3-black">Add</button></h1>
+      </div>
+      <div class="w3-container" id="customer-data">
+          <!-- Data from API will be displayed here in a table -->
+          <table class="w3-table-all">
+              <thead>
+                  <tr>
+                      <th>User Id</th>
+                      <th>Phone</th>
+                      <th>Address</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="customer-table-body">
+              </tbody>
+          </table>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Add Customer Modal -->
+<div id="add_customer" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+        <span onclick="document.getElementById('add_customer').style.display='none'; document.getElementById('customer').style.display='block';" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Add New</h1>
+      </div>
+      <div class="w3-container" id="customer-data">
+          <form action="/add_customer" method="POST">
+              <label for="user_id">User Id</label>
+              <input type="text" id="user_id" name="user_id">
+
+              <label for="phone">Phone</label>
+              <input type="text" id="phone" name="phone">
+
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address">
+
+              <input type="hidden" id="edit_customer_id" name="edit_customer_id" value=""> <!-- Hidden field to store the menu item ID -->
+              <input type="submit" value="Submit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Edit Customer Modal -->
+<div id="edit_customer" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('edit_customer').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Edit Customer</h1>
+      </div>
+      <div class="w3-container" id="customer-data">
+          <form onsubmit="event.preventDefault(); updateCustomerItem();">
+              <label for="edit_userId">User Id</label>
+              <input type="text" id="edit_userId" name="edit_userId">
+
+              <label for="edit_phone">Phone</label>
+              <input type="text" id="edit_phone" name="edit_phone">
+
+              <label for="edit_address">Address</label>
+              <input type="text" id="edit_address" name="edit_address">
+
+              <input type="hidden" id="edit_customer_id" name="edit_customer_id" value=""> <!-- Hidden field to store the user item ID -->
+              <input type="submit" value="Edit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Employee Modal -->
+<div id="employee" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('employee').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Employee List <button onclick="document.getElementById('add_employee').style.display='block'; document.getElementById('employee').style.display='none';" class="w3-button w3-black">Add</button></h1>
+      </div>
+      <div class="w3-container" id="employee-data">
+          <!-- Data from API will be displayed here in a table -->
+          <table class="w3-table-all">
+              <thead>
+                  <tr>
+                      <th>User Id</th>
+                      <th>Category</th>
+                      <th>Salary</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="employee-table-body">
+              </tbody>
+          </table>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Add Employee Modal -->
+<div id="add_employee" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+        <span onclick="document.getElementById('add_employee').style.display='none'; document.getElementById('employee').style.display='block';" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Add New</h1>
+      </div>
+      <div class="w3-container" id="employee-data">
+          <form action="/add_employee" method="POST">
+              <label for="user_id">User Id</label>
+              <input type="text" id="user_id" name="user_id">
+
+              <label for="category">Category</label>
+              <input type="text" id="category" name="category">
+
+              <label for="salary">Salary</label>
+              <input type="text" id="salary" name="salary">
+
+              <input type="hidden" id="edit_employee_id" name="edit_employee_id" value=""> <!-- Hidden field to store the menu item ID -->
+              <input type="submit" value="Submit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+
+<!-- Edit Employee Modal -->
+<div id="edit_employee" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('edit_employee').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Edit Employee</h1>
+      </div>
+      <div class="w3-container" id="employee-data">
+          <form onsubmit="event.preventDefault(); updateEmployeeItem();">
+              <label for="edit_userId1">User Id</label>
+              <input type="text" id="edit_userId1" name="edit_userId1">
+
+              <label for="edit_category">Category</label>
+              <input type="text" id="edit_category" name="edit_category">
+
+              <label for="edit_salary">Salary</label>
+              <input type="text" id="edit_salary" name="edit_salary">
+
+              <input type="hidden" id="edit_employee_id" name="edit_employee_id" value=""> <!-- Hidden field to store the user item ID -->
+              <input type="submit" value="Edit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Bill Modal -->
+<div id="bill" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('bill').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Bills <button onclick="document.getElementById('add_bill').style.display='block'; document.getElementById('bill').style.display='none';" class="w3-button w3-black">Add</button></h1>
+      </div>
+      <div class="w3-container" id="bill-data">
+          <!-- Data from API will be displayed here in a table -->
+          <table class="w3-table-all">
+              <thead>
+                  <tr>
+                      <th>Order Id</th>
+                      <th>Total Amount</th>
+                      <th>Payment Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="bill-table-body">
+              </tbody>
+          </table>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Add Bill Modal -->
+<div id="add_bill" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+        <span onclick="document.getElementById('add_bill').style.display='none'; document.getElementById('bill').style.display='block';" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Add New</h1>
+      </div>
+      <div class="w3-container" id="employee-data">
+          <form action="/add_bill" method="POST">
+              <label for="order_id">Order Id</label>
+              <input type="text" id="order_id" name="order_id">
+
+              <label for="total_amount">Total Amount</label>
+              <input type="text" id="total_amount" name="total_amount">
+
+              <label for="payment_status">Payment Status</label>
+              <input type="text" id="payment_status" name="payment_status">
+
+              <input type="hidden" id="edit_bill_id" name="edit_bill_id" value=""> <!-- Hidden field to store the menu item ID -->
+              <input type="submit" value="Submit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Edit Bill Modal -->
+<div id="edit_bill" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('edit_bill').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Edit Bill</h1>
+      </div>
+      <div class="w3-container" id="bill-data">
+          <form onsubmit="event.preventDefault(); updateBillItem();">
+              <label for="edit_orderId">Order Id</label>
+              <input type="text" id="edit_orderId" name="edit_orderId">
+
+              <label for="edit_total_amount">Total Amount</label>
+              <input type="text" id="edit_total_amount" name="edit_total_amount">
+
+              <label for="edit_payment_status">Payment Status</label>
+              <input type="text" id="edit_payment_status" name="edit_payment_status">
+
+              <input type="hidden" id="edit_bill_id" name="edit_bill_id" value=""> <!-- Hidden field to store the user item ID -->
+              <input type="submit" value="Edit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Order Modal -->
+<div id="order" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('order').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Orders <button onclick="document.getElementById('add_order').style.display='block'; document.getElementById('order').style.display='none';" class="w3-button w3-black">Add</button></h1>
+      </div>
+      <div class="w3-container" id="order-data">
+          <!-- Data from API will be displayed here in a table -->
+          <table class="w3-table-all">
+              <thead>
+                  <tr>
+                      <th>Employee Id</th>
+                      <th>Customer Id</th>
+                      <th>Order Date</th>
+                      <th>Order Item</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Description</th>
+                      <th>Order Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="order-table-body">
+              </tbody>
+          </table>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Add Order Modal -->
+<div id="add_order" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+        <span onclick="document.getElementById('add_order').style.display='none'; document.getElementById('order').style.display='block';" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Add New</h1>
+      </div>
+      <div class="w3-container" id="order-data">
+          <form action="/add_order" method="POST">
+              <label for="emp_id">Employee Id</label>
+              <input type="text" id="emp_id" name="emp_id">
+
+              <label for="cust_id">Customer Id</label>
+              <input type="text" id="cust_id" name="cust_id">
+
+              <label for="order_date">Order Date</label>
+              <input type="text" id="order_date" name="order_date" placeholder = "YYYY-MM-DD">
+
+              <label for="order_item">Order Item</label>
+              <input type="text" id="order_item" name="order_item">
+
+              <label for="quantity">Quantity</label>
+              <input type="text" id="quantity" name="quantity">
+
+              <label for="price">Price</label>
+              <input type="text" id="price" name="price">
+
+              <label for="description">Description</label>
+              <input type="text" id="description" name="description">
+
+              <label for="order_status">Order Status</label>
+              <input type="text" id="order_status" name="order_status">
+
+              <input type="hidden" id="edit_order_id" name="edit_order_id" value=""> <!-- Hidden field to store the menu item ID -->
+              <input type="submit" value="Submit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+
+<!-- Edit Order Modal -->
+<div id="edit_order" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('edit_order').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Edit order</h1>
+      </div>
+      <div class="w3-container" id="order-data">
+          <form onsubmit="event.preventDefault(); updateOrderItem();">
+              <label for="edit_empId">Employee Id</label>
+              <input type="text" id="edit_empId" name="edit_empId">
+
+              <label for="edit_custId">Customer Id</label>
+              <input type="text" id="edit_custId" name="edit_custId">
+
+              <label for="edit_order_date">Order Date</label>
+              <input type="text" id="edit_order_date" name="edit_order_date" placeholder = "YYYY-MM-DD">
+
+              <label for="edit_order_item">Order Item</label>
+              <input type="text" id="edit_order_item" name="edit_order_item">
+
+              <label for="edit_quantity">Quantity</label>
+              <input type="text" id="edit_quantity" name="edit_quantity">
+
+              <label for="edit_price1">Price</label>
+              <input type="text" id="edit_price1" name="edit_price1">
+
+              <label for="edit_Description">Description</label>
+              <input type="text" id="edit_Description" name="edit_Description">
+
+              <label for="edit_order_status">Order Status</label>
+              <input type="text" id="edit_order_status" name="edit_order_status">
+
+              <input type="hidden" id="edit_order_Id" name="edit_order_Id" value=""> <!-- Hidden field to store the user item ID -->
+              <input type="submit" value="Edit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Stock Modal -->
+<div id="stock" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('stock').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Orders <button onclick="document.getElementById('add_stock').style.display='block'; document.getElementById('stock').style.display='none';" class="w3-button w3-black">Add</button></h1>
+      </div>
+      <div class="w3-container" id="stock-data">
+          <!-- Data from API will be displayed here in a table -->
+          <table class="w3-table-all">
+              <thead>
+                  <tr>
+                      <th>Menu Item</th>
+                      <th>Quantity</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="stock-table-body">
+              </tbody>
+          </table>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+<!-- Add Stock Modal -->
+<div id="add_stock" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+        <span onclick="document.getElementById('add_stock').style.display='none'; document.getElementById('stock').style.display='block';" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Add New</h1>
+      </div>
+      <div class="w3-container" id="stock-data">
+          <form action="/add_stock" method="POST">
+      
+              <label for="menu_item">Menu Item</label>
+              <input type="text" id="menu_item" name="menu_item">
+
+              <label for="quantity">Quantity</label>
+              <input type="text" id="quantity" name="quantity">
+
+              <input type="hidden" id="edit_stock_id" name="edit_order_id" value=""> <!-- Hidden field to store the menu item ID -->
+              <input type="submit" value="Submit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+
+<!-- Edit Stock Modal -->
+<div id="edit_stock" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+      <div class="w3-container w3-black w3-display-container">
+          <span onclick="document.getElementById('edit_stock').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+          <h1>Edit stock</h1>
+      </div>
+      <div class="w3-container" id="stock-data">
+          <form onsubmit="event.preventDefault(); updateStockItem();">
+              <label for="edit_menu_item">Menu Item</label>
+              <input type="text" id="edit_menu_item" name="edit_menu_item">
+
+              <label for="edit_quantity1">Quantity</label>
+              <input type="text" id="edit_quantity1" name="edit_quantity1">
+
+              <input type="hidden" id="edit_stock_id" name="edit_stock_id" value=""> <!-- Hidden field to store the user item ID -->
+              <input type="submit" value="Edit">
+          </form>
+      </div>
+      <div class="w3-container w3-black">
+      </div>
+  </div>
+</div>
+
+
+<script>
+    function getMenuData() {
+      // Make the API call
+      fetch('/menu') // Assuming this endpoint returns the menu data
+        .then(response => response.json())
+        .then(data => {
+          console.log('Fetched data:', data); // Log the fetched data
+  
+          // Rest of the code to display the data in the modal
+          const menuDataDiv = document.getElementById('menu-table-body');
+          menuDataDiv.innerHTML = ''; // Clear previous data (if any)
+  
+          // Create HTML elements to display the data in a table
+          data.data.forEach(menuItem => {
+            const row = document.createElement('tr');
+            const itemNameCell = document.createElement('td');
+            const priceCell = document.createElement('td');
+            const descriptionCell = document.createElement('td');
+            const actionCell = document.createElement('td'); // Cell for Edit and Delete buttons
+
+            itemNameCell.textContent = menuItem[1]; // Item Name from data[i][1]
+            priceCell.textContent = menuItem[2]; // Price from data[i][2]
+            descriptionCell.textContent = menuItem[3];
+            // Edit button
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.onclick = () => {
+                openEditMenuModal(menuItem[0]); // Passing the menu item ID to the function
+            };
+            actionCell.appendChild(editButton);
+
+            // Delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = () => {
+              // Call the deleteMenu API passing the menu item ID
+              deleteMenu(menuItem[0]); // Assuming the menu item ID is at data[i][0]
+            };
+            actionCell.appendChild(deleteButton);
+            
+            row.appendChild(itemNameCell);
+            row.appendChild(priceCell);
+            row.appendChild(descriptionCell);
+            row.appendChild(actionCell);
+            
+            menuDataDiv.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching menu data:', error);
+        });
+    }
+
+    // Function to call the editMenu API
+    // ... Existing code ...
+
+    function openEditMenuModal(menuId) {
+      fetch(`/menu/${menuId}`)
+          .then(response => response.json())
+          .then(data => {
+              console.log('Edit Menu Data:', data);
+  
+              // Populate the fields in the "add_item" div with the data
+              document.getElementById('edit_description').value = data.data[3]; // Assuming 'description' is the property name in the fetched data
+              document.getElementById('edit_item_name').value = data.data[1]; // Assuming 'item_name' is the property name in the fetched data
+              document.getElementById('edit_price').value = data.data[2]; // Assuming 'price' is the property name in the fetched data
+              document.getElementById('edit_menu_id').value = data.data[0]; // Assuming 'price' is the property name in the fetched data
+  
+              // Store the menu item ID in the hidden field
+             // document.getElementById('edit_menu_id').value = menuId;
+  
+              // Show the "add_item" div
+              document.getElementById('edit_item').style.display = 'block';
+          })
+          .catch(error => {
+              console.error('Error fetching menu item for edit:', error);
+          });
+  }
+    
+// ... Existing code ...
+
+  
+    // Function to call the deleteMenu API
+    function deleteMenu(menuId) {
+      fetch(`/del_menu/${menuId}`, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Delete Menu Response:', data);
+          // You can refresh the menu table or handle any other logic after successful deletion
+          getMenuData();
+        })
+        .catch(error => {
+          console.error('Error deleting menu item:', error);
+        });
+    
+    function openAddMenuModal() {
+        const addMenuModal = document.getElementById('add-menu-modal');
+        console.log("addMenuModal",addMenuModal);
+        addMenuModal.style.display = 'block'; // Show the modal
+      }
+
+    }
+
+    function updateMenuItem() {
+      // Get the data from the edit_item div
+      const menuId = document.getElementById('edit_menu_id').value;
+      const description = document.getElementById('edit_description').value;
+      const itemName = document.getElementById('edit_item_name').value;
+      const price = document.getElementById('edit_price').value;
+  
+      // Build the form data
+      const formData = new FormData();
+      formData.append('menuId', menuId);
+      formData.append('item_name', itemName);
+      formData.append('price', price);
+      formData.append('description', description);
+  
+      // Make the PUT request to the API
+      fetch(`/upd_menu/${menuId}`, {
+          method: 'PUT',
+          body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Update Menu Response:', data);
+          // You can handle the response data here if needed
+          // For example, close the modal after successful update
+          document.getElementById('edit_item').style.display = 'none';
+          // Refresh the menu data
+          getMenuData();
+      })
+      .catch(error => {
+          console.error('Error updating menu item:', error);
+      });
+  }
+  function getUserData() {
+    // Make the API call
+    fetch('/user') // Assuming this e()User Id  .thndpoint returns the user data
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched data:', data); // Log the fetched data
+  
+        // Rest of the code to display the data in the modal
+        const userDataDiv = document.getElementById('user-table-body');
+        userDataDiv.innerHTML = ''; // Clear previous data (if any)
+  
+        // Create HTML elements to display the data in a table
+        data.data.forEach(userItem => {
+          const row = document.createElement('tr');
+          const idCell = document.createElement('td');
+          const nameCell = document.createElement('td');
+          const roleCell = document.createElement('td');
+          const actionCell = document.createElement('td'); // Cell for Edit and Delete buttons
+  
+          idCell.textContent = userItem[0];
+          nameCell.textContent = userItem[1]; // Item Name from data[i][1]
+          roleCell.textContent = userItem[2]; // Price from data[i][2]
+  
+          // Edit button
+          const editButton = document.createElement('button');
+          editButton.textContent = 'Edit';
+          editButton.onclick = () => {
+            openEditUserModal(userItem[0]); // Passing the user item ID to the function
+          };
+          actionCell.appendChild(editButton);
+  
+          // Delete button
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Delete';
+          deleteButton.onclick = () => {
+            // Call the deleteUser API passing the user item ID
+            deleteUser(userItem[0]); // Assuming the user item ID is at data[i][0]
+          };
+          actionCell.appendChild(deleteButton);
+          
+          row.appendChild(idCell);
+          row.appendChild(nameCell);
+          row.appendChild(roleCell);
+          row.appendChild(actionCell);
+  
+          userDataDiv.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }
+  
+
+    // Function to call the editUser API
+    // ... Existing code ...
+
+    function openEditUserModal(userId) {
+      fetch(`/user/${userId}`)
+          .then(response => response.json())
+          .then(data => {
+              console.log('Edit User Data:', data);
+
+              // Populate the fields in the "add_item" div with the data
+              document.getElementById('edit_name').value = data.data[1]; // Assuming 'item_name' is the property name in the fetched data
+              document.getElementById('edit_role').value = data.data[2]; // Assuming 'price' is the property name in the fetched data
+              document.getElementById('edit_user_id').value = data.data[0]; // Assuming 'price' is the property name in the fetched data
+
+              // Store the user item ID in the hidden field
+            // document.getElementById('edit_user_id').value = userId;
+
+              // Show the "add_item" div
+              document.getElementById('edit_user').style.display = 'block';
+          })
+          .catch(error => {
+              console.error('Error fetching user item for edit:', error);
+          });
+  }
+    
+    function openEditCustomerModal(customerId) {
+      fetch(`/customer/${customerId}`)
+          .then(response => response.json())
+          .then(data => {
+              console.log('Edit Customer Data:', data);
+              console.log(' data.data[1]:',  data.data[1]);
+              console.log("document.getElementById('edit_user_id').value:", document.getElementById('edit_userId').value);
+
+              // Populate the fields in the "add_item" div with the data
+              document.getElementById('edit_userId').value = data.data[1]; // Assuming 'item_name' is the property name in the fetched data
+              document.getElementById('edit_customer_id').value = data.data[0]; // Assuming 'item_name' is the property name in the fetched data
+              document.getElementById('edit_phone').value = data.data[2]; // Assuming 'price' is the property name in the fetched data
+              document.getElementById('edit_address').value = data.data[3]; // Assuming 'price' is the property name in the fetched data
+
+              // Store the user item ID in the hidden field
+            // document.getElementById('edit_user_id').value = userId;
+
+              // Show the "add_item" div
+              document.getElementById('edit_customer').style.display = 'block';
+          })
+          .catch(error => {
+              console.error('Error fetching user item for edit:', error);
+          });
+  }
+    
+  // ... Existing code ...
+    // Function to call the deleteUser API
+    function deleteUser(userId) {
+      fetch(`/del_user/${userId}`, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Delete User Response:', data);
+          // You can refresh the user table or handle any other logic after successful deletion
+          getUserData();
+        })
+        .catch(error => {
+          console.error('Error deleting user item:', error);
+        });
+      }
+      function openAddUserModal() {
+        const addUserModal = document.getElementById('add_user');
+        console.log("addUserModal",addUserModal);
+        addUserModal.style.display = 'block'; // Show the modal
+      }
+      function openAddCustomerModal() {
+        const addUserModal = document.getElementById('add_customer');
+        console.log("addUserModal",addUserModal);
+        addUserModal.style.display = 'block'; // Show the modal
+      }
+    function deleteCustomer(customerId) {
+      fetch(`/del_customer/${customerId}`, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Delete User Response:', data);
+          // You can refresh the user table or handle any other logic after successful deletion
+          getCustomerData();
+        })
+        .catch(error => {
+          console.error('Error deleting user item:', error);
+        });
+    }
+    function updateUserItem() {
+      // Get the data from the edit_item div
+      const userId = document.getElementById('edit_user_id').value;
+      const name = document.getElementById('edit_name').value;
+      const role = document.getElementById('edit_role').value;
+
+      // Build the form data
+      const formData = new FormData();
+      formData.append('userId', userId);
+      formData.append('name', name);
+      formData.append('role', role);
+
+      console.log("formData",formData);
+      
+      // Make the PUT request to the API
+      fetch(`/upd_user/${userId}`, {
+          method: 'PUT',
+          body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Update User Response:', data);
+          // You can handle the response data here if needed
+          // For example, close the modal after successful update
+          document.getElementById('edit_user').style.display = 'none';
+          // Refresh the user data
+          getUserData();
+      })
+      .catch(error => {
+          console.error('Error updating user item:', error);
+      });
+  }
+    function updateCustomerItem() {
+      // Get the data from the edit_item div
+
+      const customerId = document.getElementById('edit_customer_id').value;
+      const userId = document.getElementById('edit_userId').value;
+      const phone = document.getElementById('edit_phone').value;
+      const address = document.getElementById('edit_address').value;
+
+      // Build the form data
+      const formData = new FormData();
+      formData.append('user_id', userId);
+      formData.append('phone', phone);
+      formData.append('address', address);
+
+      console.log("formData",formData);
+      
+      // Make the PUT request to the API
+      fetch(`/upd_customer/${customerId}`, {
+          method: 'PUT',
+          body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Update User Response:', data);
+          // You can handle the response data here if needed
+          // For example, close the modal after successful update
+          document.getElementById('edit_customer').style.display = 'none';
+          // Refresh the user data
+          getCustomerData();
+      })
+      .catch(error => {
+          console.error('Error updating user item:', error);
+      });
+  }
+  //Customer Functions
+  function getCustomerData() {
+    // Make the API call
+    fetch('/customer') // Assuming this endpoint returns the user data
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched data:', data); // Log the fetched data
+  
+        // Rest of the code to display the data in the modal
+        const userDataDiv = document.getElementById('customer-table-body');
+        userDataDiv.innerHTML = ''; // Clear previous data (if any)
+  
+        // Create HTML elements to display the data in a table
+        data.data.forEach(userItem => {
+          const row = document.createElement('tr');
+          const userIdCell = document.createElement('td');
+          const phoneCell = document.createElement('td');
+          const addressCell = document.createElement('td');
+          const actionCell = document.createElement('td'); // Cell for Edit and Delete buttons
+  
+          userIdCell.textContent = userItem[1]; // Item Name from data[i][1]
+          phoneCell.textContent = userItem[2]; // Price from data[i][2]
+          addressCell.textContent = userItem[3]; // Price from data[i][2]
+  
+          // Edit button
+          const editButton = document.createElement('button');
+          editButton.textContent = 'Edit';
+          editButton.onclick = () => {
+            openEditCustomerModal(userItem[0]); // Passing the user item ID to the function
+          };
+          actionCell.appendChild(editButton);
+  
+          // Delete button
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Delete';
+          deleteButton.onclick = () => {
+            // Call the deleteUser API passing the user item ID
+            deleteCustomer(userItem[0]); // Assuming the user item ID is at data[i][0]
+          };
+          actionCell.appendChild(deleteButton);
+  
+          row.appendChild(userIdCell);
+          row.appendChild(phoneCell);
+          row.appendChild(addressCell);
+          row.appendChild(actionCell);
+  
+          userDataDiv.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
+  }
+
+  function deleteEmployee(employeeId) {
+    fetch(`/del_employee/${employeeId}`, { method: 'DELETE' })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Delete User Response:', data);
+        // You can refresh the user table or handle any other logic after successful deletion
+        getEmployeeData();
+      })
+      .catch(error => {
+        console.error('Error deleting user item:', error);
+      });
+  }
+
+  function updateEmployeeItem() {
+    // Get the data from the edit_item div
+
+    const employeeId = document.getElementById('edit_employee_id').value;
+    const userId1 = document.getElementById('edit_userId1').value;
+    const category = document.getElementById('edit_category').value;
+    const salary = document.getElementById('edit_salary').value;
+
+    // Build the form data
+    const formData = new FormData();
+    formData.append('user_id', userId1);
+    formData.append('category', category);
+    formData.append('salary', salary);
+
+    console.log("formData",formData);
+    
+    // Make the PUT request to the API
+    fetch(`/upd_employee/${employeeId}`, {
+        method: 'PUT',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Update User Response:', data);
+        // You can handle the response data here if needed
+        // For example, close the modal after successful update
+        document.getElementById('edit_employee').style.display = 'none';
+        // Refresh the user data
+        getEmployeeData();
+    })
+    .catch(error => {
+        console.error('Error updating user item:', error);
+    });
+}
+
+
+  function openEditEmployeeModal(employeeId) {
+    fetch(`/employee/${employeeId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Edit Employee Data:', data);
+            console.log(' data.data[1]:',  data.data[1]);
+            console.log("document.getElementById('edit_user_id').value:", document.getElementById('edit_userId1').value);
+
+            // Populate the fields in the "add_item" div with the data
+            document.getElementById('edit_userId1').value = data.data[1]; // Assuming 'item_name' is the property name in the fetched data
+            document.getElementById('edit_employee_id').value = data.data[0]; // Assuming 'item_name' is the property name in the fetched data
+            document.getElementById('edit_category').value = data.data[2]; // Assuming 'price' is the property name in the fetched data
+            document.getElementById('edit_salary').value = data.data[3]; // Assuming 'price' is the property name in the fetched data
+
+            // Store the user item ID in the hidden field
+          // document.getElementById('edit_user_id').value = userId;
+
+            // Show the "add_item" div
+            document.getElementById('edit_employee').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error fetching user item for edit:', error);
+        });
+}
+
+
+ //Employee Functions
+ function getEmployeeData() {
+  // Make the API call
+  fetch('/employee') // Assuming this endpoint returns the user data
+    .then(response => response.json())
+    .then(data => {
+      console.log('Fetched data:', data); // Log the fetched data
+
+      // Rest of the code to display the data in the modal
+      const userDataDiv = document.getElementById('employee-table-body');
+      userDataDiv.innerHTML = ''; // Clear previous data (if any)
+
+      // Create HTML elements to display the data in a table
+      data.data.forEach(userItem => {
+        const row = document.createElement('tr');
+        const userId1Cell = document.createElement('td');
+        const categoryCell = document.createElement('td');
+        const salaryCell = document.createElement('td');
+        const actionCell = document.createElement('td'); // Cell for Edit and Delete buttons
+
+        userId1Cell.textContent = userItem[1]; // Item Name from data[i][1]
+        categoryCell.textContent = userItem[2]; // Price from data[i][2]
+        salaryCell.textContent = userItem[3]; // Price from data[i][2]
+
+        // Edit button
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => {
+          openEditEmployeeModal(userItem[0]); // Passing the user item ID to the function
+        };
+        actionCell.appendChild(editButton);
+
+        // Delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => {
+          // Call the deleteUser API passing the user item ID
+          deleteEmployee(userItem[0]); // Assuming the user item ID is at data[i][0]
+        };
+        actionCell.appendChild(deleteButton);
+
+        row.appendChild(userId1Cell);
+        row.appendChild(categoryCell);
+        row.appendChild(salaryCell);
+        row.appendChild(actionCell);
+
+        userDataDiv.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching user data:', error);
+    });
+}
+
+function deleteBill(billId) {
+  fetch(`/del_bill/${billId}`, { method: 'DELETE' })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Delete User Response:', data);
+      // You can refresh the user table or handle any other logic after successful deletion
+      getBillData();
+    })
+    .catch(error => {
+      console.error('Error deleting user item:', error);
+    });
+}
+
+
+function updateBillItem() {
+  // Get the data from the edit_item div
+
+  const billId = document.getElementById('edit_bill_id').value;
+  const orderId = document.getElementById('edit_orderId').value;
+  const total_amount = document.getElementById('edit_total_amount').value;
+  const payment_status = document.getElementById('edit_payment_status').value;
+
+  // Build the form data
+  const formData = new FormData();
+  formData.append('order_id', orderId);
+  formData.append('total_amount', total_amount);
+  formData.append('payment_status', payment_status);
+
+  console.log("formData",formData);
+  
+  // Make the PUT request to the API
+  fetch(`/upd_bill/${billId}`, {
+      method: 'PUT',
+      body: formData,
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Update User Response:', data);
+      // You can handle the response data here if needed
+      // For example, close the modal after successful update
+      document.getElementById('edit_bill').style.display = 'none';
+      // Refresh the user data
+      getBillData();
+  })
+  .catch(error => {
+      console.error('Error updating user item:', error);
+  });
+}
+
+
+function openEditBillModal(billId) {
+  fetch(`/bill/${billId}`)
+      .then(response => response.json())
+      .then(data => {
+          console.log('Edit bill Data:', data);
+          console.log(' data.data[1]:',  data.data[1]);
+          console.log("document.getElementById('edit_order_id').value:", document.getElementById('edit_orderId').value);
+
+          // Populate the fields in the "add_item" div with the data
+          document.getElementById('edit_orderId').value = data.data[1]; // Assuming 'item_name' is the property name in the fetched data
+          document.getElementById('edit_bill_id').value = data.data[0]; // Assuming 'item_name' is the property name in the fetched data
+          document.getElementById('edit_total_amount').value = data.data[2]; // Assuming 'price' is the property name in the fetched data
+          document.getElementById('edit_payment_status').value = data.data[3]; // Assuming 'price' is the property name in the fetched data
+
+          // Store the user item ID in the hidden field
+        // document.getElementById('edit_user_id').value = userId;
+
+          // Show the "add_item" div
+          document.getElementById('edit_bill').style.display = 'block';
+      })
+      .catch(error => {
+          console.error('Error fetching user item for edit:', error);
+      });
+}
+
+
+ //BIll Functions
+ function getBillData() {
+  // Make the API call
+  fetch('/bill') // Assuming this endpoint returns the user data
+    .then(response => response.json())
+    .then(data => {
+      console.log('Fetched data:', data); // Log the fetched data
+
+      // Rest of the code to display the data in the modal
+      const userDataDiv = document.getElementById('bill-table-body');
+      userDataDiv.innerHTML = ''; // Clear previous data (if any)
+
+      // Create HTML elements to display the data in a table
+      data.data.forEach(userItem => {
+        const row = document.createElement('tr');
+        const orderIdCell = document.createElement('td');
+        const total_amountCell = document.createElement('td');
+        const payment_statusCell = document.createElement('td');
+        const actionCell = document.createElement('td'); // Cell for Edit and Delete buttons
+
+        orderIdCell.textContent = userItem[1]; // Item Name from data[i][1]
+        total_amountCell.textContent = userItem[2]; // Price from data[i][2]
+        payment_statusCell.textContent = userItem[3]; // Price from data[i][2]
+
+        // Edit button
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => {
+          openEditBillModal(userItem[0]); // Passing the user item ID to the function
+        };
+        actionCell.appendChild(editButton);
+
+        // Delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => {
+          // Call the deleteUser API passing the user item ID
+          deleteBill(userItem[0]); // Assuming the user item ID is at data[i][0]
+        };
+        actionCell.appendChild(deleteButton);
+
+        row.appendChild(orderIdCell);
+        row.appendChild(total_amountCell);
+        row.appendChild(payment_statusCell);
+        row.appendChild(actionCell);
+
+        userDataDiv.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching user data:', error);
+    });
+}
+
+function deleteOrder(orderId) {
+  fetch(`/del_order/${orderId}`, { method: 'DELETE' })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Delete User Response:', data);
+      // You can refresh the user table or handle any other logic after successful deletion
+      getOrderData();
+    })
+    .catch(error => {
+      console.error('Error deleting user item:', error);
+    });
+}
+
+
+function updateOrderItem() {
+  // Get the data from the edit_item div
+
+  const orderId1 = document.getElementById('edit_order_Id').value;
+  const empId = document.getElementById('edit_empId').value;
+  const custId = document.getElementById('edit_custId').value;
+  const order_date = document.getElementById('edit_order_date').value;
+  const order_item = document.getElementById('edit_order_item').value;
+  const quantity = document.getElementById('edit_quantity').value;
+  const price = document.getElementById('edit_price1').value;
+  const Description = document.getElementById('edit_Description').value;
+  const order_status = document.getElementById('edit_order_status').value;
+
+  // Build the form data
+  const formData = new FormData();
+  formData.append('emp_id', empId);
+  formData.append('cust_id', custId);
+  formData.append('order_date', order_date);
+  formData.append('order_item', order_item);
+  formData.append('quantity', quantity);
+  formData.append('price', price);
+  formData.append('description', Description);
+  formData.append('order_status', order_status);
+
+  console.log("formData",formData);
+  
+  // Make the PUT request to the API
+  fetch(`/upd_order/${orderId1}`, {
+      method: 'PUT',
+      body: formData,
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Update User Response:', data);
+      // You can handle the response data here if needed
+      // For example, close the modal after successful update
+      document.getElementById('edit_order').style.display = 'none';
+      // Refresh the user data
+      getOrderData();
+  })
+  .catch(error => {
+      console.error('Error updating user item:', error);
+  });
+}
+
+
+function openEditOrderModal(orderId) {
+  fetch(`/order/${orderId}`)
+      .then(response => response.json())
+      .then(data => {
+          console.log('Edit order Data:', data);
+          console.log(' data.data[1]:',  data.data[1]);
+          console.log("document.getElementById('edit_emp_id').value:", document.getElementById('edit_empId').value);
+
+          // Populate the fields in the "add_item" div with the data
+          document.getElementById('edit_empId').value = data.data[1]; // Assuming 'item_name' is the property name in the fetched data
+          document.getElementById('edit_order_Id').value = data.data[0]; // Assuming 'item_name' is the property name in the fetched data
+          document.getElementById('edit_custId').value = data.data[2]; // Assuming 'price' is the property name in the fetched data
+          document.getElementById('edit_order_date').value = data.data[3]; // Assuming 'price' is the property name in the fetched data
+          document.getElementById('edit_order_item').value = data.data[4];
+          document.getElementById('edit_quantity').value = data.data[5];
+          document.getElementById('edit_price1').value = data.data[6];
+          document.getElementById('edit_Description').value = data.data[7];
+          document.getElementById('edit_order_status').value = data.data[8];
+          // Store the user item ID in the hidden field
+        // document.getElementById('edit_user_id').value = userId;
+
+          // Show the "add_item" div
+          document.getElementById('edit_order').style.display = 'block';
+      })
+      .catch(error => {
+          console.error('Error fetching user item for edit:', error);
+      });
+}
+
+
+ //Order Functions
+ function getOrderData() {
+  // Make the API call
+  fetch('/order') // Assuming this endpoint returns the user data
+    .then(response => response.json())
+    .then(data => {
+      console.log('Fetched data:', data); // Log the fetched data
+
+      // Rest of the code to display the data in the modal
+      const userDataDiv = document.getElementById('order-table-body');
+      userDataDiv.innerHTML = ''; // Clear previous data (if any)
+
+      // Create HTML elements to display the data in a table
+      data.data.forEach(userItem => {
+        const row = document.createElement('tr');
+        const empIdCell = document.createElement('td');
+        const custIdCell = document.createElement('td');
+        const order_dateCell = document.createElement('td');
+        const order_itemCell = document.createElement('td');
+        const quantityCell = document.createElement('td');
+        const priceCell = document.createElement('td');
+        const DescriptionCell = document.createElement('td');
+        const order_statusCell = document.createElement('td');
+        const actionCell = document.createElement('td'); // Cell for Edit and Delete buttons
+
+        empIdCell.textContent = userItem[1]; // Item Name from data[i][1]
+        custIdCell.textContent = userItem[2]; // Price from data[i][2]
+        order_dateCell.textContent = userItem[3]; // Price from data[i][2]
+        order_itemCell.textContent = userItem[4];
+        quantityCell.textContent = userItem[5];
+        priceCell.textContent = userItem[6];
+        DescriptionCell.textContent = userItem[7];
+        order_statusCell.textContent = userItem[8];
+      
+        // Edit button
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => {
+          openEditOrderModal(userItem[0]); // Passing the user item ID to the function
+        };
+        actionCell.appendChild(editButton);
+
+        // Delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => {
+          // Call the deleteUser API passing the user item ID
+          deleteOrder(userItem[0]); // Assuming the user item ID is at data[i][0]
+        };
+        actionCell.appendChild(deleteButton);
+
+        row.appendChild(empIdCell);
+        row.appendChild(custIdCell);
+        row.appendChild(order_dateCell);
+        row.appendChild(order_itemCell);
+        row.appendChild(quantityCell);
+        row.appendChild(priceCell);
+        row.appendChild(DescriptionCell);
+        row.appendChild(order_statusCell);
+        row.appendChild(actionCell);
+
+        userDataDiv.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching user data:', error);
+    });
+}
+
+function deleteStock(stockId) {
+  fetch(`/del_stock/${stockId}`, { method: 'DELETE' })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Delete User Response:', data);
+      // You can refresh the user table or handle any other logic after successful deletion
+      getStockData();
+    })
+    .catch(error => {
+      console.error('Error deleting user item:', error);
+    });
+}
+
+
+function updateStockItem() {
+  // Get the data from the edit_item div
+
+  const stockId = document.getElementById('edit_stock_id').value;
+  const menu_item = document.getElementById('edit_menu_item').value;
+  const quantity1 = document.getElementById('edit_quantity1').value;
+
+  // Build the form data
+  const formData = new FormData();
+  formData.append('menu_item', menu_item);
+  formData.append('quantity', quantity1);
+
+  console.log("formData",formData);
+  
+  // Make the PUT request to the API
+  fetch(`/upd_stock/${stockId}`, {
+      method: 'PUT',
+      body: formData,
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log('Update User Response:', data);
+      // You can handle the response data here if needed
+      // For example, close the modal after successful update
+      document.getElementById('edit_stock').style.display = 'none';
+      // Refresh the user data
+      getStockData();
+  })
+  .catch(error => {
+      console.error('Error updating user item:', error);
+  });
+}
+
+
+function openEditStockModal(stockId) {
+  fetch(`/stock/${stockId}`)
+      .then(response => response.json())
+      .then(data => {
+          console.log('Edit stock Data:', data);
+          console.log(' data.data[1]:',  data.data[1]);
+          // Populate the fields in the "add_item" div with the data
+          document.getElementById('edit_menu_item').value = data.data[1]; // Assuming 'item_name' is the property name in the fetched data
+          document.getElementById('edit_quantity1').value = data.data[2]; // Assuming 'item_name' is the property name in the fetched data
+          document.getElementById('edit_stock_id').value = data.data[0]; // Assuming 'price' is the property name in the fetched data
+          // Store the user item ID in the hidden field
+        // document.getElementById('edit_user_id').value = userId;
+
+          // Show the "add_item" div
+          document.getElementById('edit_stock').style.display = 'block';
+      })
+      .catch(error => {
+          console.error('Error fetching user item for edit:', error);
+      });
+}
+
+
+ //Stock Functions
+ function getStockData() {
+  // Make the API call
+  fetch('/stock') // Assuming this endpoint returns the user data
+    .then(response => response.json())
+    .then(data => {
+      console.log('Fetched data:', data); // Log the fetched data
+
+      // Rest of the code to display the data in the modal
+      const userDataDiv = document.getElementById('stock-table-body');
+      userDataDiv.innerHTML = ''; // Clear previous data (if any)
+
+      // Create HTML elements to display the data in a table
+      data.data.forEach(userItem => {
+        const row = document.createElement('tr');
+        const menu_itemCell = document.createElement('td');
+        const quantityCell = document.createElement('td');
+        const actionCell = document.createElement('td'); // Cell for Edit and Delete buttons
+
+        menu_itemCell.textContent = userItem[1];
+        quantityCell.textContent = userItem[2];
+      
+        // Edit button
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => {
+          openEditStockModal(userItem[0]); // Passing the user item ID to the function
+        };
+        actionCell.appendChild(editButton);
+
+        // Delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => {
+          // Call the deleteUser API passing the user item ID
+          deleteStock(userItem[0]); // Assuming the user item ID is at data[i][0]
+        };
+        actionCell.appendChild(deleteButton);
+
+        row.appendChild(menu_itemCell);
+        row.appendChild(quantityCell);
+        row.appendChild(actionCell);
+
+        userDataDiv.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching user data:', error);
+    });
+}
+
+
+</script>
 </body>
 </html>
 
